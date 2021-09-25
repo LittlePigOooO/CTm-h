@@ -1,6 +1,6 @@
 function [ tm ] = Cal_era( Xcoord,Ycoord,Zcoord )
 filename=importdata('dataname_era.txt');
-%Õ¾×ø±ê
+%ç«™åæ ‡
 %ZLYA
 Xcoord=30.00;Ycoord=110.00;Zcoord=0.0;
 %Jinghe
@@ -41,7 +41,7 @@ zdatagrid=z(:,:,i,j);
 tdatagrid=t(:,:,i,j);
 qdatagrid=q(:,:,i,j);
 
-zzdata=reshape(zdatagrid,m1*m2,1); %²åÖµĞèÒª
+zzdata=reshape(zdatagrid,m1*m2,1); %æ’å€¼éœ€è¦
 ttdata=reshape(tdatagrid,m1*m2,1); 
 qqdata=reshape(qdatagrid,m1*m2,1);
 
@@ -49,31 +49,31 @@ zdatagrid=zdatagrid';
 tdatagrid=tdatagrid';
 qdatagrid=qdatagrid';
 
-%²åÖµÓÃ
+%æ’å€¼ç”¨
 [xlat ylon]=GetXYCoord(numel(zzdata),m1,m2,latitude(size(latitude,1)),latitude(1),longitude(1),longitude(size(longitude,1)));
 %-4/3
 Zdata=gIDW(xlat,ylon,zzdata,Xcoord,Ycoord,0,'n',8);
 
 pg = 9.7804*(1 + 0.0052884*(sin(Xcoord)*sin(Xcoord) - 0.0000059 *(sin(2 * Xcoord))*(sin(2 * Xcoord)))) - 0.00000286*Zcoord;%Gravitational acceleration
-zdata2h=Zdata/pg; %Î»ÊÆ¸ß
+zdata2h=Zdata/pg; %ä½åŠ¿é«˜
 
 
 Tdata=gIDW(xlat,ylon,ttdata,Xcoord,Ycoord,0,'n',8);
 Qdata=gIDW(xlat,ylon,qqdata,Xcoord,Ycoord,0,'n',8);
 
 %Qi(i)=Qdata;
-Ei(i)=double(Qdata)*double(level(i))/0.622+0.378*double(Qdata);     %Ë®ÆûÑ¹
-Ti(i)=Tdata;                                    %ÎÂ¶È
-Hi(i)=zdata2h;                                  %Î»ÊÆ¸ß¶È
+Ei(i)=double(Qdata)*double(level(i))/0.622+0.378*double(Qdata);     %æ°´æ±½å‹
+Ti(i)=Tdata;                                    %æ¸©åº¦
+Hi(i)=zdata2h;                                  %ä½åŠ¿é«˜åº¦
 
 end
 
 
  
- temp_Tm=cal_Tm(Ei,Ti,Hi,m);    %º£Æ½ÃæTm
+ temp_Tm=cal_Tm(Ei,Ti,Hi,m);    %æµ·å¹³é¢Tm
 
  
- %ÎÂ¶Èµİ¼õÂÊ¼ÆËã
+ %çº¿æ€§æ¸©åº¦é€’å‡ç‡è®¡ç®—ï¼ˆå»ºæ¨¡éœ€è¦ï¼‰
  Tm_lapse=cal_Tm_lapserate_each( Ei,Ti,Hi );
  delta_a=Tm_lapse/1000;
  Tm(j,1)=temp_Tm+(Zcoord-Hi(m))*delta_a;
