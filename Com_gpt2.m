@@ -5,8 +5,8 @@ gptput_dir='F:\ECMWF_China\pressure\txt\';
 %longitude=70:0.25:140;
 %longitude=longitude';
 %load('TIME_2018.mat');
-latitude=15:0.25:55; latitude=latitude'; longitude=70:0.25:140; longitude=longitude';
-[X,Y] = meshgrid(longitude',latitude'); %产生length(x)个列，length(y)个行，5x9
+latitude=15:0.5:55; latitude=latitude'; longitude=70:0.5:140; longitude=longitude';
+[X,Y] = meshgrid(longitude',latitude'); %虏煤脡煤length(x)赂枚脕脨拢卢length(y)赂枚脨脨拢卢5x9
 [xlat ylon]=GetXYCoord(size(latitude,1)*size(longitude,1),size(latitude,1),size(longitude,1),latitude(size(latitude,1)),latitude(1),longitude(1),longitude(size(longitude,1)));
 %RBS=zeros(size(latitude,1)*size(longitude,1),6);
 %COEFFCIENT=zeros(size(latitude,1)*size(longitude,1),5);
