@@ -1,10 +1,13 @@
 function [ Tm ] = CTm_h( Xcoord,Ycoord,Zcoord,doy,hour ) 
 load('coefficient.txt');
-%latitude=55:-0.25:15;
+%latitude=55:-0.5:15;
 %latitude=latitude';
-%longitude=70:0.25:140;
+%longitude=70:0.5:140;
 %longitude=longitude';
 
+#chazhi
+
+#jisuanxishu
 for ii=1:1:size(latitude,1)*size(longitude,1)
     
     
